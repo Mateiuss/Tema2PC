@@ -6,9 +6,12 @@ void SolveTask1() {
     int n,m,x=0,y=0,pas=0;
     matrix[x][x]=++pas;
     scanf("%d%d",&n,&m);
-    while(scanf("%s",cod))
+    fgets(cod,MAX,stdin);
+    char *p;
+    p=strtok(cod," ");
+    while(p)
     {
-        switch(cod[0])
+        switch(p[0])
         {
             case 'a':
             {
@@ -16,9 +19,9 @@ void SolveTask1() {
                 int pozmax=1;
                 for(int i=1;i<=4;i++)
                 {
-                    if(cod[i]-'0'>max)
+                    if(p[i]-'0'>max)
                     {
-                        max=cod[i]-'0';
+                        max=p[i]-'0';
                         pozmax=i;
                     }
                 }
@@ -57,13 +60,13 @@ void SolveTask1() {
             }
             case 'b':
             {
-                int k=strlen(cod)-1;
-                int X=(cod[k-1]-'0')*10+(cod[k]-'0');
+                int k=strlen(p)-1;
+                int X=(p[k-1]-'0')*10+(p[k]-'0');
                 int primm=prim(X);
                 int palindrom=1;
                 for(int i=1;i<=k/2;i++)
                 {
-                    if(cod[i]!=cod[k-i+1])
+                    if(p[i]!=p[k-i+1])
                     {
                         palindrom=0;
                         break;
@@ -95,8 +98,8 @@ void SolveTask1() {
             }
             case 'c':
             {
-                int ln=cod[1]-'0';
-                int k=cod[2]-'0';
+                int ln=p[1]-'0';
+                int k=p[2]-'0';
                 //printf("n=%d si k=%d\n",ln,k);
                 int S=0;
                 for(int i=0,j=1;j<=k;i+=k-1,j++)
@@ -104,7 +107,7 @@ void SolveTask1() {
                     if(i>n)
                         i=0;
                     //printf("cod[%d]=%c\n",i+3,cod[i+3]);
-                    S+=(cod[i+3]-'0');
+                    S+=(p[i+3]-'0');
                 }
                 //printf("S=%d\n",S);
                 S=S%4;
@@ -141,6 +144,7 @@ void SolveTask1() {
             }
             default: printf("Hi!");
         }
+	p=strtok(NULL," ");
     }
     afisare(matrix,n,m);
 }
