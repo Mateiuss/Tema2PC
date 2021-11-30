@@ -1,36 +1,6 @@
-#include <stdio.h>
-#include <string.h>
+#include "utils.h"
 
-#define MAX 100
-
-void afisare(int matrix[MAX][MAX],int n,int m)
-{
-    for(int i=0;i<n;i++)
-    {
-        for(int j=0;j<m;j++)
-        {
-            printf("%d ",matrix[i][j]);
-        }
-        printf("\n");
-    }
-}
-
-int prim(int x)
-{
-    if(x<2)
-        return 0;
-    if(x==2)
-        return 1;
-    if(x%2==0)
-        return 0;
-    for(int d=3;d*d<=x;d+=2)
-        if(x%d==0)
-            return 0;
-    return 1;
-}
-
-int main()
-{
+void SolveTask1() {
     char cod[MAX];
     int matrix[MAX][MAX]={0};
     int n,m,x=0,y=0,pas=0;
@@ -172,5 +142,31 @@ int main()
             default: printf("Hi!");
         }
     }
-    return 0;
+    afisare(matrix,n,m);
+}
+
+void afisare(int matrix[MAX][MAX],int n,int m)
+{
+    for(int i=0;i<n;i++)
+    {
+        for(int j=0;j<m;j++)
+        {
+            printf("%d ",matrix[i][j]);
+        }
+        printf("\n");
+    }
+}
+
+int prim(int x)
+{
+    if(x<2)
+        return 0;
+    if(x==2)
+        return 1;
+    if(x%2==0)
+        return 0;
+    for(int d=3;d*d<=x;d+=2)
+        if(x%d==0)
+            return 0;
+    return 1;
 }
