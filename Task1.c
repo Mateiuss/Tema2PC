@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 
 #define MAX 100
 
@@ -12,6 +13,20 @@ void afisare(int matrix[MAX][MAX],int n,int m)
         }
         printf("\n");
     }
+}
+
+int prim(int x)
+{
+    if(x<2)
+        return 0;
+    if(x==2)
+        return 1;
+    if(x%2==0)
+        return 0;
+    for(int d=3;d*d<=x;d+=2)
+        if(x%d==0)
+            return 0;
+    return 1;
 }
 
 int main()
@@ -37,7 +52,7 @@ int main()
                         pozmax=i;
                     }
                 }
-                printf("%d %d\n",max,pozmax);
+                //printf("%d %d\n",max,pozmax);
                 switch(pozmax)
                 {
                     case 1:
@@ -67,13 +82,94 @@ int main()
                     default:
                         printf("CEVA");
                 }
-                afisare(matrix,n,m);
+                //afisare(matrix,n,m);
                 break;
             }
             case 'b':
             {
-                
+                int k=strlen(cod)-1;
+                int X=(cod[k-1]-'0')*10+(cod[k]-'0');
+                int primm=prim(X);
+                int palindrom=1;
+                for(int i=1;i<=k/2;i++)
+                {
+                    if(cod[i]!=cod[k-i+1])
+                    {
+                        palindrom=0;
+                        break;
+                    }    
+                }
+                //printf("%d %s\n",palindrom,cod);
+                if(primm==1&&palindrom==1)
+                {
+                    y--;
+                    matrix[x][y]=++pas;
+                }
+                else if(primm==1&&palindrom==0)
+                {
+                    x--;
+                    matrix[x][y]=++pas;
+                }
+                else if(primm==0&&palindrom==1)
+                {
+                    y++;
+                    matrix[x][y]=++pas;
+                }
+                else if(primm==0&&palindrom==0)
+                {
+                    x++;
+                    matrix[x][y]=++pas;
+                }
+                //afisare(matrix,n,m);
+                break;
             }
+            case 'c':
+            {
+                int ln=cod[1]-'0';
+                int k=cod[2]-'0';
+                //printf("n=%d si k=%d\n",ln,k);
+                int S=0;
+                for(int i=0,j=1;j<=k;i+=k-1,j++)
+                {
+                    if(i>n)
+                        i=0;
+                    //printf("cod[%d]=%c\n",i+3,cod[i+3]);
+                    S+=(cod[i+3]-'0');
+                }
+                //printf("S=%d\n",S);
+                S=S%4;
+                switch(S)
+                {
+                    case 0:
+                    {
+                        y--;
+                        matrix[x][y]=++pas;
+                        break;
+                    }
+                    case 1:
+                    {
+                        x--;
+                        matrix[x][y]=++pas;
+                        break;
+                    }
+                    case 2:
+                    {
+                        y++;
+                        matrix[x][y]=++pas;
+                        break;
+                    }
+                    case 3:
+                    {
+                        x++;
+                        matrix[x][y]=++pas;
+                        break;
+                    }
+                    default: printf("Hello, World!");
+                }
+                //afisare(matrix,n,m);
+                break;
+            }
+            default: printf("Hi!");
         }
     }
     return 0;
