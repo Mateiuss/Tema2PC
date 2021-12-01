@@ -4,6 +4,7 @@
 #include <math.h>
 #include <string.h>
 #define MAX 200
+#define CIFLEN 20
 void afisare(int matrix[MAX][MAX],int,int); 
 int prim(int);
 void SolveTask1();
