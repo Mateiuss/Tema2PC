@@ -1,13 +1,12 @@
 #include "utils.h"
 
 void SolveTask1() {
-    char cod[MAX];
+    char cod[MAX],*p;
     int matrix[MAX][MAX]={0};
     int n,m,x=0,y=0,pas=0;
-    matrix[x][x]=++pas;
-    scanf("%d%d",&n,&m);
+    matrix[x][y]=++pas;
+    scanf("%d%d\n",&n,&m);
     fgets(cod,MAX,stdin);
-    char *p;
     p=strtok(cod," ");
     while(p)
     {
@@ -102,10 +101,10 @@ void SolveTask1() {
                 int k=p[2]-'0';
                 //printf("n=%d si k=%d\n",ln,k);
                 int S=0;
-                for(int i=0,j=1;j<=k;i+=k-1,j++)
+                for(int i=0,j=1;j<=k;i+=k,j++)
                 {
-                    if(i>n)
-                        i=0;
+                    if(i>=ln)
+                        i=i%ln;
                     //printf("cod[%d]=%c\n",i+3,cod[i+3]);
                     S+=(p[i+3]-'0');
                 }
