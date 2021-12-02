@@ -11,6 +11,7 @@ int prim(int);
 void decriptareCaesar(char*,int);
 void decriptareVigenere(char*,char*);
 void sumChars(char*,char*,char*);
+void addNull(char *);
 void SolveTask1();
 void SolveTask2();
 void SolveTask3();
