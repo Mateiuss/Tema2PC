@@ -29,8 +29,8 @@ void SolveTask2() {
 	}
 	case 'a':
 	{
-		int key;
-		char N1[MAX2],N2[MAX2],sum[MAX2];
+		int key,i=0;
+		char N1[MAX2],N2[MAX2],sum[MAX2]={'0'};
 		scanf("%d\n",&key);
 		fgets(N1,MAX2,stdin);
 		fgets(N2,MAX2,stdin);
@@ -38,8 +38,12 @@ void SolveTask2() {
 		addNull(N2);
 		decriptareCaesar(N1,key);
 		decriptareCaesar(N2,key);
-		printf("N1=%s\nN2=%s\n",N1,N2);
 		sumChars(N1,N2,sum);
+		char *p=sum;
+		while(*(p+i)=='0')
+			p++;
+		printf("%s\n",p);
+		break;
 	}
 	default: printf("Hi");
     }
@@ -91,9 +95,49 @@ void addNull(char *sir){
 		sir[strlen(sir)-1]='\0';
 }
 
+int maxi(int a,int b)
+{
+	if(a>b)
+		return a;
+	return b;
+}
+
 void sumChars(char *N1,char *N2,char *sum){
-	
-	/*if(strlen(N1) < strlen(N2)){
-		for(int i
-	}*/
+	int i=strlen(N1)-1;
+	int j=strlen(N2)-1;
+	int k=maxi(strlen(N1),strlen(N2));
+	int rest=0;
+	while(i>=0||j>=0){
+		if(i>=0&&j>=0){
+			char c=N1[i--]+N2[j--]+rest-'0';
+			rest=0;
+			if(c>'9'){
+				rest=1;
+				c='0'+c-'9'-1;
+			}
+			sum[k--]=c;
+		}
+		else{
+			if(i>=0){
+				char c=N1[i--]+rest;
+				rest=0;
+				if(c>'9'){
+					rest=1;
+					c='0'+c-'9'-1;
+				}
+				sum[k--]=c;
+			}
+			else{
+				char c=N2[j--]+rest;
+				rest=0;
+				if(c>'9'){
+					rest=1;
+					c='0'+c-'9'-1;
+				}
+				sum[k--]=c;
+			}
+		}
+	}
+	if(rest==1)
+		sum[k]='1';
 }
