@@ -91,8 +91,7 @@ void decriptareVigenere(char *cod,char *key){
 }
 
 void addNull(char *sir){
-	if(sir[strlen(sir)-1]=='\n')
-		sir[strlen(sir)-1]='\0';
+	sir[strcspn(sir,"\n")]=0;
 }
 
 int maxi(int a,int b)
