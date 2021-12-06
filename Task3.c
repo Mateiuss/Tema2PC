@@ -5,6 +5,7 @@ void SolveTask3() {
     citire(sir);
     strcpy(sirPrelucrat,sir);
     prelucrareSir(sirPrelucrat);
+    printf("%s\n",sirPrelucrat);
     printf("%d\n",nr2grame(sirPrelucrat,sir));
     nr2grameComb(sirPrelucrat);
 }
