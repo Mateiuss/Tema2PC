@@ -33,13 +33,11 @@ void salvare_2grame(char doigrame[LIN][COL], char *sir, int *aparitii, int *nrAp
 		strcat(str, " ");
 		strcat(str, q);
 		addNull(str);
-		//printf("%s\n", str);
 		if (cautare(doigrame, str, aparitii, nrAparitii) == 0) {
 			*nrAparitii = *nrAparitii + 1;
 			strcpy(doigrame[*nrAparitii], str);
 			aparitii[*nrAparitii]++;
 		}
-		//printf("%d %d\n", *nrAparitii, aparitii[*nrAparitii]);
 		p = q;
 		q = strtok(NULL, " .,!;");
 	}
@@ -50,7 +48,7 @@ void citire(char *sir) {
 	getchar();
 	fgets(str, MAX3, stdin);
 	addNull(str);
-	strcpy(sir,str);
+	strcpy(sir, str);
 	while (fgets(str, MAX3, stdin)){
 		addNull(str);
 		strcat(sir, " ");
