@@ -4,6 +4,8 @@ void SolveTask2() {
     char cifru[CIFLEN];
     getchar();
     fgets(cifru, CIFLEN, stdin);
+
+    // switch folosit pentru a realiza operatia ceruta
     switch(cifru[0]){
 	case 'c':
 	{
@@ -48,8 +50,10 @@ void SolveTask2() {
 	}
 	default: printf("Hi");
     }
+    return 0;
 }
 
+// functie care infaptuieste decriptarea Caesar
 void decriptareCaesar(char *cod, int key) {
 	for(int i = 0; i < strlen(cod); i++){
 		if(cod[i] >= '0' && cod[i] <= '9'){
@@ -72,6 +76,7 @@ void decriptareCaesar(char *cod, int key) {
 	}
 }
 
+// functie care realizeaza decriptarea Vigenere
 void decriptareVigenere(char *cod, char *key){
 	for(int i = 0; i < strlen(cod); i++){
 		int key2 = key[i % (strlen(key))] - 'A';
@@ -96,10 +101,12 @@ void decriptareVigenere(char *cod, char *key){
 	}
 }
 
+// functie care inlocuieste caracterul \n de la finalul unui string cu \0
 void addNull(char *sir){
 	sir[strcspn(sir, "\n")] = 0;
 }
 
+// functie care returneaza maximul dintre doua numere
 int maxi(int a, int b)
 {
 	if(a > b) {
@@ -108,6 +115,7 @@ int maxi(int a, int b)
 	return b;
 }
 
+// functie care insumeaza doua numere mari, memorate intr-un string
 void sumChars(char *N1, char *N2, char *sum){
 	int i = strlen(N1) - 1;
 	int j = strlen(N2) - 1;

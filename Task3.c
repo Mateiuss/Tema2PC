@@ -11,6 +11,7 @@ void SolveTask3() {
 	}
 }
 
+// functie care memoreaza numarul de aparitii al unei 2grame
 int cautare(char doigrame[LIN][COL], char *str, int *aparitii, int *nrAparitii) {
 	for (int i = 1; i <= *nrAparitii; i++) {
 		if(strcmp(doigrame[i], str) == 0) {
@@ -21,8 +22,9 @@ int cautare(char doigrame[LIN][COL], char *str, int *aparitii, int *nrAparitii) 
 	return 0;
 }
 
+// functie care memoreaza atat 2gramele, cat si numarul lor de aparitii
 void salvare_2grame(char doigrame[LIN][COL], char *sir, int *aparitii, int *nrAparitii) {
-	char *p, *q;
+	char *p = NULL, *q = NULL;
 	p = strtok(sir, " .,!;");
 	q = strtok(NULL, " .,!;");
 	addNull(p);
@@ -43,6 +45,7 @@ void salvare_2grame(char doigrame[LIN][COL], char *sir, int *aparitii, int *nrAp
 	}
 }
 
+// functie care citeste pe rand cuvintele si le concateneaza intr-un singur string
 void citire(char *sir) {
 	char str[MAX3];
 	getchar();

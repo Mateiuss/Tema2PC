@@ -8,6 +8,8 @@ void SolveTask1() {
     scanf("%d%d\n", &n, &m);
     fgets(cod, MAX, stdin);
     addNull(cod);
+    // utilizand un pointer si functia strtok, citesc pe rand 
+    // fiecare instructiune si apoi o prelucrez in functie de cerinta
     p = strtok(cod, " ");
     while(p)
     {
@@ -15,6 +17,7 @@ void SolveTask1() {
         {
             case 'a':
             {
+		// determinarea celui mai mare numar din secventa
                 int max = 0;
                 int pozmax = 1;
                 for(int i = 1; i <= 4; i++)
@@ -25,6 +28,9 @@ void SolveTask1() {
                         pozmax = i;
                     }
                 }
+
+		// determinarea urmatorului pas din matrice in functie 
+		// de cel mai mare numar aflat in secventa data
                 switch(pozmax)
                 {
                     case 1:
@@ -62,6 +68,8 @@ void SolveTask1() {
                 int X = (p[k-1] - '0') * 10 + (p[k] - '0');
                 int primm = prim(X);
                 int palindrom = 1;
+
+		// verific daca numarul este palindrom
                 for(int i = 1; i <= k / 2 ; i++)
                 {
                     if(p[i] != p[k - i + 1])
@@ -70,6 +78,9 @@ void SolveTask1() {
                         break;
                     }    
                 }
+
+		// determin urmatorul pas din matrice in functie de 
+		// variabilele primm si palindrom
                 if(primm == 1 && palindrom == 1)
                 {
                     y--;
@@ -97,13 +108,20 @@ void SolveTask1() {
                 int ln = p[1] - '0';
                 int k = p[2] - '0';
                 int S = 0;
+
+		// calcularea sumei cerute
                 for(int i = 0, j = 1; j <= k; i += k, j++)
                 {
-                    if(i >= ln)
-                        i = i % ln;
-                    S += (p[i + 3] - '0');
+			// ciclarea indicelui in cazul in care se trece 
+			// de ultimul numar
+			if(i >= ln){
+				i = i % ln;
+			}
+			S += (p[i + 3] - '0');
                 }
                 S = S % 4;
+
+		// determinarea urmatorului pas in functie de suma
                 switch(S)
                 {
                     case 0:
@@ -141,6 +159,7 @@ void SolveTask1() {
     afisare(matrix, n, m);
 }
 
+// functie de afisare a matricei
 void afisare(int matrix[MAX][MAX], int n, int m) {
     for(int i = 0; i < n; i++)
     {
@@ -152,6 +171,7 @@ void afisare(int matrix[MAX][MAX], int n, int m) {
     }
 }
 
+// functie care determina daca un numar este prim
 int prim(int x) {
     if(x < 2){
         return 0;
