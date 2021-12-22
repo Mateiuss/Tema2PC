@@ -1,6 +1,7 @@
 #include "utils.h"
 
-void SolveTask3() {
+void SolveTask3()
+{
 	char sir[MAX3], doigrame[LIN][COL];
 	int aparitii[MAX2] = { 0 }, nrAparitii = 0;
 	citire(sir);
@@ -14,7 +15,7 @@ void SolveTask3() {
 // functie care memoreaza numarul de aparitii al unei 2grame
 int cautare(char doigrame[LIN][COL], char *str, int *aparitii, int *nrAparitii) {
 	for (int i = 1; i <= *nrAparitii; i++) {
-		if(strcmp(doigrame[i], str) == 0) {
+		if (strcmp(doigrame[i], str) == 0) {
 			aparitii[i]++;
 			return 1;
 		}

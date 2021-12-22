@@ -1,12 +1,13 @@
 #include "utils.h"
 
-void SolveTask2() {
+void SolveTask2()
+{
     char cifru[CIFLEN];
     getchar();
     fgets(cifru, CIFLEN, stdin);
 
     // switch folosit pentru a realiza operatia ceruta
-    switch(cifru[0]){
+    switch (cifru[0]) {
 	case 'c':
 	{
 		int key;
@@ -42,7 +43,7 @@ void SolveTask2() {
 		decriptareCaesar(N2, key);
 		sumChars(N1, N2, sum);
 		char *p = sum;
-		while(*(p + i) == '0') {
+		while (*(p + i) == '0') {
 			p++;
 		}
 		printf("%s\n", p);
@@ -50,26 +51,27 @@ void SolveTask2() {
 	}
 	default: printf("Hi");
     }
-    return 0;
 }
 
 // functie care infaptuieste decriptarea Caesar
-void decriptareCaesar(char *cod, int key) {
-	for(int i = 0; i < strlen(cod); i++){
-		if(cod[i] >= '0' && cod[i] <= '9'){
+void decriptareCaesar(char *cod, int key)
+{
+	for (int i = 0; i < strlen(cod); i++) {
+		if (cod[i] >= '0' && cod[i] <= '9') {
 			cod[i] -= key % 10;
-			if(cod[i] < '0') {
+			if (cod[i] < '0') {
 				cod[i]= '9' - ('0' - cod[i]) + 1;
 			}
 		}
-		else if(cod[i] >= 'a' && cod[i] <= 'z'){
+		else if (cod[i] >= 'a' && cod[i] <= 'z') {
 			cod[i] -= key % 26;
-			if(cod[i] < 'a')
+			if (cod[i] < 'a') {
 				cod[i] = 'z' - ('a' - cod[i]) + 1;
+			}
 		}
-		else if(cod[i] >= 'A' && cod[i] <= 'Z'){
+		else if (cod[i] >= 'A' && cod[i] <= 'Z') {
 			cod[i] -= key % 26;
-			if(cod[i] < 'A') {
+			if (cod[i] < 'A') {
 				cod[i] = 'Z' - ('A' - cod[i]) + 1;
 			}
 		}
@@ -77,24 +79,25 @@ void decriptareCaesar(char *cod, int key) {
 }
 
 // functie care realizeaza decriptarea Vigenere
-void decriptareVigenere(char *cod, char *key){
-	for(int i = 0; i < strlen(cod); i++){
+void decriptareVigenere(char *cod, char *key)
+{
+	for (int i = 0; i < strlen(cod); i++) {
 		int key2 = key[i % (strlen(key))] - 'A';
-		if(cod[i] >= '0' && cod[i] <= '9'){
+		if (cod[i] >= '0' && cod[i] <= '9') {
 			cod[i] -= key2 % 10;
-			if(cod[i] < '0') {
+			if (cod[i] < '0') {
 				cod[i] = '9' - ('0' - cod[i]) + 1;
 			}
 		}
-		else if(cod[i] >= 'a' && cod[i] <= 'z'){
+		else if (cod[i] >= 'a' && cod[i] <= 'z') {
 			cod[i] -= key2 % 26;
-			if(cod[i] < 'a') {
+			if (cod[i] < 'a') {
 				cod[i] = 'z' - ('a' - cod[i]) + 1;
 			}
 		}
-		else if(cod[i] >= 'A' && cod[i] <= 'Z'){
+		else if (cod[i] >= 'A' && cod[i] <= 'Z') {
 			cod[i] -= key2 % 26;
-			if(cod[i] < 'A') {
+			if (cod[i] < 'A') {
 				cod[i] = 'Z' - ('A' - cod[i]) + 1;
 			}
 		}
@@ -102,49 +105,51 @@ void decriptareVigenere(char *cod, char *key){
 }
 
 // functie care inlocuieste caracterul \n de la finalul unui string cu \0
-void addNull(char *sir){
+void addNull(char *sir)
+{
 	sir[strcspn(sir, "\n")] = 0;
 }
 
 // functie care returneaza maximul dintre doua numere
 int maxi(int a, int b)
 {
-	if(a > b) {
+	if (a > b) {
 		return a;
 	}
 	return b;
 }
 
 // functie care insumeaza doua numere mari, memorate intr-un string
-void sumChars(char *N1, char *N2, char *sum){
+void sumChars(char *N1, char *N2, char *sum)
+{
 	int i = strlen(N1) - 1;
 	int j = strlen(N2) - 1;
 	int k = maxi(strlen(N1), strlen(N2));
 	int rest = 0;
-	while(i >= 0 || j >= 0){
-		if(i >= 0 && j >= 0){
+	while (i >= 0 || j >= 0) {
+		if (i >= 0 && j >= 0) {
 			char c = N1[i--] + N2[j--] + rest - '0';
 			rest = 0;
-			if(c > '9'){
+			if (c > '9') {
 				rest = 1;
 				c = '0' + c - '9' - 1;
 			}
 			sum[k--] = c;
 		}
-		else{
-			if(i >= 0){
+		else {
+			if (i >= 0) {
 				char c = N1[i--] + rest;
 				rest = 0;
-				if(c > '9'){
+				if (c > '9') {
 					rest = 1;
 					c='0' + c - '9' - 1;
 				}
 				sum[k--] = c;
 			}
-			else{
+			else {
 				char c = N2[j--] + rest;
 				rest = 0;
-				if(c > '9'){
+				if (c > '9') {
 					rest = 1;
 					c = '0' + c - '9' - 1;
 				}
@@ -152,7 +157,7 @@ void sumChars(char *N1, char *N2, char *sum){
 			}
 		}
 	}
-	if(rest == 1) {
+	if (rest == 1) {
 		sum[k] = '1';
 	}
 }
